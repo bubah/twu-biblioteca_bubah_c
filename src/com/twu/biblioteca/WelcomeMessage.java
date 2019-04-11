@@ -1,14 +1,10 @@
 package com.twu.biblioteca;
 
 public class WelcomeMessage {
-    String message;
+    private String message = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
 
     public String getMessage(){
         String message = this.message;
         return message;
-    }
-
-    public void setMessage(String message){
-        this.message = message;
     }
 }
