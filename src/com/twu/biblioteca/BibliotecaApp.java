@@ -5,7 +5,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
 
         WelcomeMessage welcomeMessage = new WelcomeMessage();
-        System.out.println(welcomeMessage.getMessage());
+        System.out.println(welcomeMessage.getMessage() + '\n');
 
         LibraryMenue libraryMenue = new LibraryMenue();
         libraryMenue.brownseMenue();

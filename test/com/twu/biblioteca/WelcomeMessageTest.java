@@ -11,7 +11,13 @@ public class WelcomeMessageTest {
     @Test
     public void ReturnWelcomeMessage() {
 
+        // Given
         WelcomeMessage welcomeMessage = new WelcomeMessage();
-        assertThat(welcomeMessage.getMessage(), is("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
+
+        // When
+        String message = welcomeMessage.getMessage();
+
+        // Then
+        assertThat(message, is("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
     }
 }
