@@ -1,19 +1,19 @@
 package com.twu.biblioteca;
 
-import com.sun.tools.javac.util.List;
 import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Scanner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import org.hamcrest.core.IsCollectionContaining;
-import static org.hamcrest.Matchers.hasItems;
-import static org.hamcrest.core.StringContains.containsString;
+import static org.hamcrest.Matchers.is;
 
 public class LibraryMenueTest {
     @Test
-    public void MenueListOfOptionTest(){
+    public void GetMenueOptionsTest(){
 
         // Given
         LibraryMenue libraryMenue = new LibraryMenue();
@@ -23,5 +23,20 @@ public class LibraryMenueTest {
 
         //Then
         assertThat(menueOptions, IsCollectionContaining.hasItem("List of Books"));
+    }
+
+    @Test
+    public void GetUserInputTest(){
+
+        // Given
+        LibraryMenue libraryMenue = new LibraryMenue();
+
+        // When
+        String input = "A";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        char userInput = libraryMenue.getUserInput();
+
+        // Then
+        assertThat(userInput, is('A'));
     }
 }

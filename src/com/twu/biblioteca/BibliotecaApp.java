@@ -8,6 +8,6 @@ public class BibliotecaApp {
         System.out.println(welcomeMessage.getMessage() + '\n');
 
         LibraryMenue libraryMenue = new LibraryMenue();
-        libraryMenue.brownseMenue();
+        libraryMenue.displayListOfMenueOptions();
     }
 }

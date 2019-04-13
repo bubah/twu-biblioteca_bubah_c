@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import sun.tools.jconsole.ProxyClient;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,56 +17,37 @@ public class LibraryMenue {
         this.listOfBooks = new LibraryBookCatalogue();
     }
 
-    private void displayListOfMenueOptions(){
-        ArrayList options = getMenueOptions();
-        //System
+    public void displayListOfMenueOptions(){
+        System.out.println("Select a menue option:");
+        System.out.println("A: " + menueOptions.get(0));
     }
 
-    private void displayListOfBooks(){
-        ArrayList<Books> books = listOfBooks.getListOfBooks();
-
-        //System.out.println("Banglore Library Menue Option (Select an option): ");
-        System.out.println("A: " + books.get(0).getTitle() + " | " + books.get(0).getAuthor() + " | " + books.get(0).getPublishDate()
-                + "\nB: " + books.get(1).getTitle() + " | " + books.get(1).getAuthor() + " | " + books.get(1).getPublishDate()
-                + "\nC: " + books.get(2).getTitle() + " | " + books.get(2).getAuthor() + " | " + books.get(2).getPublishDate());
-    }
 
     public ArrayList<String> getMenueOptions(){
         return menueOptions;
     }
 
-    public void browseMenue(){
-        Scanner scan = new Scanner(System.in);
-        char choice = 'Z';
-        //displayMenue();
+    public char getUserInput() {
+        Scanner scan = new Scanner(System.in); // Set up Scanner
+        displayListOfMenueOptions(); // Display menue
+        char choice = scan.next().charAt(0); // Get user input
+        return choice;
+    }
 
-        System.out.print("\nSelect a Book from the above list: ");
-        choice = scan.next().charAt(0);
+    public void browseMenue(){
+
+        Scanner scan = new Scanner(System.in);
+        char choice = getUserInput(scan);
 
         while (choice != '0'){
             switch (choice){
                 case 'A':
                     System.out.println("You selected Option A");
                     break;
-                case 'B':
-                    System.out.println("You selected Option B");
-                    break;
-                case 'C':
-                    System.out.println("You selected Option C");
-                    break;
-                case 'D':
-                    System.out.println("You selected Option D");
-                    break;
-                case '0':
-                    System.out.println("You Exited the Console");
-                    break;
+
                 default:
                     System.out.println("wrong selection. Try again!");
             }
-
-            //displayMenue();
-            System.out.print("Select another Book from the library: ");
-            choice = scan.next().charAt(0);
         }
     }
 }

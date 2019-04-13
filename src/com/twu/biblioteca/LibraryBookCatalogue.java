@@ -16,4 +16,32 @@ public class LibraryBookCatalogue {
     public ArrayList<Books> getListOfBooks() {
         return listOfBooks;
     }
+
+    private void displayListOfBooks(){
+        //System.out.println("Banglore Library Menue Option (Select an option): ");
+        System.out.println("A: " + listOfBooks.get(0).getTitle() + " | " + listOfBooks.get(0).getAuthor() + " | " + listOfBooks.get(0).getPublishDate()
+                + "\nB: " + listOfBooks.get(1).getTitle() + " | " + listOfBooks.get(1).getAuthor() + " | " + listOfBooks.get(1).getPublishDate()
+                + "\nC: " + listOfBooks.get(2).getTitle() + " | " + listOfBooks.get(2).getAuthor() + " | " + listOfBooks.get(2).getPublishDate());
+    }
+
+    /*while (choice != '0'){
+        switch (choice){
+            case 'A':
+                System.out.println("You selected Option A");
+                break;
+            case 'B':
+                System.out.println("You selected Option B");
+                break;
+            case 'C':
+                System.out.println("You selected Option C");
+                break;
+            case 'D':
+                System.out.println("You selected Option D");
+                break;
+            case '0':
+                System.out.println("You Exited the Console");
+                break;
+            default:
+                System.out.println("wrong selection. Try again!");
+        }*/
 }
