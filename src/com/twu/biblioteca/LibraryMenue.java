@@ -40,7 +40,7 @@ public class LibraryMenue {
             case 'A':
                 System.out.println("You selected Option A \n");
                 LibraryBookCatalogue libraryBookCatalogue = new LibraryBookCatalogue();
-                libraryBookCatalogue.displayListOfBooks();
+                libraryBookCatalogue.selectBook();
                 break;
             default:
                 System.out.println("Wrong selection. Try again!");

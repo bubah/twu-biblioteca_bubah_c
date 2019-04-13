@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList; // import the ArrayList class
+import java.util.Scanner;
 
 public class LibraryBookCatalogue {
 
@@ -17,30 +18,37 @@ public class LibraryBookCatalogue {
         return listOfBooks;
     }
 
-    public void displayListOfBooks(){
-        System.out.printf("%-50s %-50s %-50s\n", listOfBooks.get(0).getTitle(), listOfBooks.get(0).getAuthor(), listOfBooks.get(0).getPublishDate());
-        System.out.printf("%-50s %-50s %-50s\n", listOfBooks.get(1).getTitle(), listOfBooks.get(1).getAuthor(), listOfBooks.get(1).getPublishDate());
-        System.out.printf("%-50s %-50s %-50s\n", listOfBooks.get(2).getTitle(), listOfBooks.get(2).getAuthor(), listOfBooks.get(2).getPublishDate());
+    private void displayListOfBooks(){
+        System.out.printf("%-2s %-50s %-20s %-10s\n", "1: ", listOfBooks.get(0).getTitle(), listOfBooks.get(0).getAuthor(), listOfBooks.get(0).getPublishDate());
+        System.out.printf("%-2s %-50s %-20s %-10s\n", "2: ", listOfBooks.get(1).getTitle(), listOfBooks.get(1).getAuthor(), listOfBooks.get(1).getPublishDate());
+        System.out.printf("%-2s %-50s %-20s %-10s\n", "3: ", listOfBooks.get(2).getTitle(), listOfBooks.get(2).getAuthor(), listOfBooks.get(2).getPublishDate());
     }
 
-    /*while (choice != '0'){
-        switch (choice){
-            case 'A':
-                System.out.println("You selected Option A");
-                break;
-            case 'B':
-                System.out.println("You selected Option B");
-                break;
-            case 'C':
-                System.out.println("You selected Option C");
-                break;
-            case 'D':
-                System.out.println("You selected Option D");
-                break;
-            case '0':
-                System.out.println("You Exited the Console");
-                break;
-            default:
-                System.out.println("wrong selection. Try again!");
-        }*/
+    public void selectBook() {
+        displayListOfBooks();
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Select a Book to checkout (select -1 to exit app): ");
+        int choice = scan.nextInt();
+        while (choice != -1) {
+            switch (choice) {
+                case 1:
+                    System.out.println("You selected Option A");
+                    break;
+                case 2:
+                    System.out.println("You selected Option B");
+                    break;
+                case 3:
+                    System.out.println("You selected Option C");
+                    break;
+                default:
+                    System.out.println("wrong selection. Try again!");
+            }
+
+            System.out.print("Select a Book to checkout (select -1 to exit app): ");
+            choice = scan.nextInt();
+
+        }
+
+        System.out.print("Successfuly exited the application");
+    }
 }
