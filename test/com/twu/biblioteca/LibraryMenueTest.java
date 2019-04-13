@@ -2,14 +2,8 @@ package com.twu.biblioteca;
 
 import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class LibraryMenueTest {
     @Test
@@ -24,5 +18,4 @@ public class LibraryMenueTest {
         //Then
         assertThat(menueOptions, IsCollectionContaining.hasItem("List of Books"));
     }
-
 }

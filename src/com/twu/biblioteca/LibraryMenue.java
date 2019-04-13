@@ -6,24 +6,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LibraryMenue {
-
+    // Fields
     private  ArrayList<String> menueOptions;
-    private LibraryBookCatalogue listOfBooks;
 
     // Constructor
     LibraryMenue (){
         this.menueOptions = new ArrayList<String>();
         menueOptions.add("List of Books");
-        this.listOfBooks = new LibraryBookCatalogue();
     }
 
+    // DIsplay Library menue options
     private void displayListOfMenueOptions(){
         System.out.println("Menue options:");
         System.out.println("A: " + menueOptions.get(0));
         System.out.print("Select an Option: ");
     }
 
-
+    // Returns an a list of menue options (for testing purpose only)
     public ArrayList<String> getMenueOptions(){
         return menueOptions;
     }
@@ -39,7 +38,9 @@ public class LibraryMenue {
         char choice = getUserInput();
         switch (choice){
             case 'A':
-                System.out.println("You selected Option A");
+                System.out.println("You selected Option A \n");
+                LibraryBookCatalogue libraryBookCatalogue = new LibraryBookCatalogue();
+                libraryBookCatalogue.displayListOfBooks();
                 choice = 0;
                 break;
 
