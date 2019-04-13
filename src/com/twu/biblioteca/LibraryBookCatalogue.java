@@ -17,11 +17,10 @@ public class LibraryBookCatalogue {
         return listOfBooks;
     }
 
-    private void displayListOfBooks(){
-        //System.out.println("Banglore Library Menue Option (Select an option): ");
-        System.out.println("A: " + listOfBooks.get(0).getTitle() + " | " + listOfBooks.get(0).getAuthor() + " | " + listOfBooks.get(0).getPublishDate()
-                + "\nB: " + listOfBooks.get(1).getTitle() + " | " + listOfBooks.get(1).getAuthor() + " | " + listOfBooks.get(1).getPublishDate()
-                + "\nC: " + listOfBooks.get(2).getTitle() + " | " + listOfBooks.get(2).getAuthor() + " | " + listOfBooks.get(2).getPublishDate());
+    public void displayListOfBooks(){
+        System.out.printf("%-50s %-50s %-50s\n", listOfBooks.get(0).getTitle(), listOfBooks.get(0).getAuthor(), listOfBooks.get(0).getPublishDate());
+        System.out.printf("%-50s %-50s %-50s\n", listOfBooks.get(1).getTitle(), listOfBooks.get(1).getAuthor(), listOfBooks.get(1).getPublishDate());
+        System.out.printf("%-50s %-50s %-50s\n", listOfBooks.get(2).getTitle(), listOfBooks.get(2).getAuthor(), listOfBooks.get(2).getPublishDate());
     }
 
     /*while (choice != '0'){
