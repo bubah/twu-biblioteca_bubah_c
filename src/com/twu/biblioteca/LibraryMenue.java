@@ -18,7 +18,7 @@ public class LibraryMenue {
     // DIsplay Library menue options
     private void displayListOfMenueOptions(){
         System.out.println("Menue options:");
-        System.out.println("A: " + menueOptions.get(0));
+        System.out.println("A: " + menueOptions.get(0) + "\n");
         System.out.print("Select an Option: ");
     }
 
@@ -41,11 +41,9 @@ public class LibraryMenue {
                 System.out.println("You selected Option A \n");
                 LibraryBookCatalogue libraryBookCatalogue = new LibraryBookCatalogue();
                 libraryBookCatalogue.displayListOfBooks();
-                choice = 0;
                 break;
-
-                default:
-                    System.out.println("wrong selection. Try again!");
+            default:
+                System.out.println("Wrong selection. Try again!");
             }
     }
 }
