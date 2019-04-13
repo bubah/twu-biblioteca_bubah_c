@@ -25,18 +25,4 @@ public class LibraryMenueTest {
         assertThat(menueOptions, IsCollectionContaining.hasItem("List of Books"));
     }
 
-    @Test
-    public void GetUserInputTest(){
-
-        // Given
-        LibraryMenue libraryMenue = new LibraryMenue();
-
-        // When
-        String input = "A";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        char userInput = libraryMenue.getUserInput();
-
-        // Then
-        assertThat(userInput, is('A'));
-    }
 }

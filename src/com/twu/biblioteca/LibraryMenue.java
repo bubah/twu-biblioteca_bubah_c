@@ -17,9 +17,10 @@ public class LibraryMenue {
         this.listOfBooks = new LibraryBookCatalogue();
     }
 
-    public void displayListOfMenueOptions(){
-        System.out.println("Select a menue option:");
+    private void displayListOfMenueOptions(){
+        System.out.println("Menue options:");
         System.out.println("A: " + menueOptions.get(0));
+        System.out.print("Select an Option: ");
     }
 
 
@@ -27,7 +28,7 @@ public class LibraryMenue {
         return menueOptions;
     }
 
-    public char getUserInput() {
+    private char getUserInput() {
         Scanner scan = new Scanner(System.in); // Set up Scanner
         displayListOfMenueOptions(); // Display menue
         char choice = scan.next().charAt(0); // Get user input
@@ -35,19 +36,15 @@ public class LibraryMenue {
     }
 
     public void browseMenue(){
-
-        Scanner scan = new Scanner(System.in);
-        char choice = getUserInput(scan);
-
-        while (choice != '0'){
-            switch (choice){
-                case 'A':
-                    System.out.println("You selected Option A");
-                    break;
+        char choice = getUserInput();
+        switch (choice){
+            case 'A':
+                System.out.println("You selected Option A");
+                choice = 0;
+                break;
 
                 default:
                     System.out.println("wrong selection. Try again!");
             }
-        }
     }
 }
