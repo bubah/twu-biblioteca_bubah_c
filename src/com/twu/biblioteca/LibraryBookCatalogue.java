@@ -29,6 +29,7 @@ public class LibraryBookCatalogue {
             return null;
         }
         reduceBookQuantity(bookTitle);
+        printSuccessMessage(bookTitle);
         return listOfBooks.get(bookTitle);
     }
 
@@ -42,6 +43,10 @@ public class LibraryBookCatalogue {
     public int getBookQuantity(String bookTitle){
         Books book = listOfBooks.get(bookTitle);
         return book.quantity;
+    }
+
+    private void printSuccessMessage(String bookTitle){
+        System.out.println(bookTitle + " has been checkedout!\n" );
     }
 
     public void selectBook() {
