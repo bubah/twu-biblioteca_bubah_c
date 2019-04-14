@@ -4,15 +4,14 @@ import java.util.HashMap;
 import java.util.Scanner;
 public class LibraryBookCatalogue {
 
-    private HashMap<Books, Integer> listOfBooks;
-    //private ArrayList<Books> listOfBooks = new ArrayList<Books>();
+    private HashMap<String, Books> listOfBooks;
 
     LibraryBookCatalogue(){
-        listOfBooks = new HashMap<Books, Integer>();
-        listOfBooks.put(new Books("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 1997), 1);
-        listOfBooks.put(new Books("The Cat in the Hat", "DR. Suess", 2003), 1);
-        listOfBooks.put(new Books("Horton Hears a Who!", "DR. Suess", 1970), 1);
-        listOfBooks.put(new Books("Dr. Seuss on the Loose", "DR. Suess", 1973), 1);
+        listOfBooks = new HashMap<String, Books>();
+        listOfBooks.put("Harry Potter and the Philosopher's Stone", new Books("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 1997, 1));
+        listOfBooks.put("The Cat in the Hat", new Books("The Cat in the Hat", "DR. Suess", 2003, 1));
+        listOfBooks.put("Horton Hears a Who!", new Books("Horton Hears a Who!", "DR. Suess", 1970, 1));
+        listOfBooks.put("Dr. Seuss on the Loose", new Books("Dr. Seuss on the Loose", "DR. Suess", 1973, 1));
     }
 
     public HashMap getListOfBooks() {
@@ -20,14 +19,29 @@ public class LibraryBookCatalogue {
     }
 
     private void displayListOfBooks(){
-        System.out.println(listOfBooks.get("h"));
-        for (Books book: listOfBooks.keySet()){
-            System.out.printf("%-2s %-50s %-20s %-10s\n", "1: ", book.getTitle(), book.getAuthor(), book.getPublishDate());
+        for (Books book: listOfBooks.values()){
+            System.out.printf("%-50s %-20s %-10s\n", book.getTitle(), book.getAuthor(), book.getPublishDate());
         }
-        /*System.out.printf("%-2s %-50s %-20s %-10s\n", "1: ", listOfBooks.get(0).getTitle(), listOfBooks.get(0).getAuthor(), listOfBooks.get(0).getPublishDate());
-        System.out.printf("%-2s %-50s %-20s %-10s\n", "2: ", listOfBooks.get(1).getTitle(), listOfBooks.get(1).getAuthor(), listOfBooks.get(1).getPublishDate());
-        System.out.printf("%-2s %-50s %-20s %-10s\n", "3: ", listOfBooks.get(2).getTitle(), listOfBooks.get(2).getAuthor(), listOfBooks.get(2).getPublishDate());
-        System.out.printf("%-2s %-50s %-20s %-10s\n", "4: ", listOfBooks.get(3).getTitle(), listOfBooks.get(3).getAuthor(), listOfBooks.get(3).getPublishDate());*/
+    }
+
+    public Books checkOutBook(String bookTitle){
+        if(!listOfBooks.containsKey(bookTitle)){
+            return null;
+        }
+        reduceBookQuantity(bookTitle);
+        return listOfBooks.get(bookTitle);
+    }
+
+    protected void reduceBookQuantity(String bookTitle){
+        Books book = listOfBooks.get(bookTitle);
+        if(book.quantity > 0) {
+            book.quantity--;
+        }
+    }
+
+    public int getBookQuantity(String bookTitle){
+        Books book = listOfBooks.get(bookTitle);
+        return book.quantity;
     }
 
     public void selectBook() {

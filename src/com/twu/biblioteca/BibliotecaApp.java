@@ -9,5 +9,8 @@ public class BibliotecaApp {
 
         LibraryMenue libraryMenue = new LibraryMenue();
         libraryMenue.browseMenue();
+
+        System.out.print("outside in Bib: ");
+        Books mybook = new Books("A", "B", 56, 1);
     }
 }
