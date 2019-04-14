@@ -15,6 +15,18 @@ import static org.hamcrest.core.Is.is;
 
 public class LibraryBookCatalogueTest {
 
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(output));
+    }
+
+    @After
+    public void cleanUpStreams() {
+        System.setOut(null);
+    }
+
     @Test
     public void CataglogueHasFourBooks () {
 
@@ -81,18 +93,6 @@ public class LibraryBookCatalogueTest {
         assertThat(book.getTitle(), is("Harry Potter and the Philosopher's Stone"));
     }
 
-    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(output));
-    }
-
-    @After
-    public void cleanUpStreams() {
-        System.setOut(null);
-    }
-
     @Test
     public void printSuccessMessageTest(){
         // Given
@@ -102,6 +102,18 @@ public class LibraryBookCatalogueTest {
         bookCatalogue.checkOutBook(bookTitle);
         // Then
         Assert.assertThat(output.toString(), is("Harry Potter and the Philosopher's Stone has been checkedout!\n\n"));
+    }
+
+    @Test
+    public void unsuccessfulCheckOutTest(){
+        // Given
+        String bookTitle = "Harry Potter and the Philosopher's Stone";
+        LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
+        bookCatalogue.reduceBookQuantity(bookTitle); // reduce book quantity to zero so this book is no longer available
+        // When
+        bookCatalogue.checkOutBook(bookTitle); // Checkout book that is no longer available
+        // Then
+        Assert.assertThat(output.toString(), is("Sorry that book is not available\n"));
     }
 
 }

@@ -24,20 +24,26 @@ public class LibraryBookCatalogue {
         }
     }
 
-    public Books checkOutBook(String bookTitle){
-        if(!listOfBooks.containsKey(bookTitle)){
-            return null;
+    protected Books checkOutBook(String bookTitle){
+        if(listOfBooks.containsKey(bookTitle)){
+            if(reduceBookQuantity(bookTitle)) {
+                printSuccessMessage(bookTitle);
+                return listOfBooks.get(bookTitle);
+            }
         }
-        reduceBookQuantity(bookTitle);
-        printSuccessMessage(bookTitle);
-        return listOfBooks.get(bookTitle);
+
+        return null;
     }
 
-    protected void reduceBookQuantity(String bookTitle){
+    protected Boolean reduceBookQuantity(String bookTitle){
         Books book = listOfBooks.get(bookTitle);
         if(book.quantity > 0) {
             book.quantity--;
+            return true;
         }
+
+        System.out.println("Sorry that book is not available");
+        return false;
     }
 
     public int getBookQuantity(String bookTitle){
@@ -52,7 +58,7 @@ public class LibraryBookCatalogue {
     public void selectBook() {
         displayListOfBooks();
         Scanner scan = new Scanner(System.in);
-        System.out.print("Select a Book to checkout (select -1 to exit or -2 to checkout): ");
+        System.out.print("Select a Book to checkout (select -1 to exit app): ");
         String choice = scan.nextLine();
         while (!choice.equals("-1")) {
 
@@ -67,24 +73,8 @@ public class LibraryBookCatalogue {
             } else if(choice.equals("Dr. Seuss on the Loose")) {
                 checkOutBook(choice);
             } else {
-                System.out.println("wrong selection. Try again!");
+                System.out.println("Sorry that book is not available");
             }
-            /*switch (choice) {
-                case "Harry Potter and the Philosopher's Stone":
-                    System.out.println("You selected Option A");
-                    break;
-                case "The Cat in the Hat":
-                    System.out.println("You selected Option B");
-                    break;
-                case "Horton Hears a Who!":
-                    System.out.println("You selected Option C");
-                    break;
-                case "Dr. Seuss on the Loose":
-                    System.out.println("You selected option 4");
-                    break;
-                default:
-                    System.out.println("wrong selection. Try again!");
-            }*/
 
             System.out.print("Select a Book to checkout (select -1 to exit app): ");
             choice = scan.nextLine();
