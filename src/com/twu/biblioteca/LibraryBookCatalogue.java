@@ -52,28 +52,42 @@ public class LibraryBookCatalogue {
     public void selectBook() {
         displayListOfBooks();
         Scanner scan = new Scanner(System.in);
-        System.out.print("Select a Book to checkout (select -1 to exit app): ");
-        int choice = scan.nextInt();
-        while (choice != -1) {
-            switch (choice) {
-                case 1:
+        System.out.print("Select a Book to checkout (select -1 to exit or -2 to checkout): ");
+        String choice = scan.nextLine();
+        while (!choice.equals("-1")) {
+
+            //System.out.println("Choice " + choice);
+
+            if(choice.equals("Harry Potter and the Philosopher's Stone")){
+                checkOutBook(choice);
+            } else if(choice.equals("The Cat in the Hat")){
+                checkOutBook(choice);
+            } else if(choice.equals("Horton Hears a Who!")){
+                checkOutBook(choice);
+            } else if(choice.equals("Dr. Seuss on the Loose")) {
+                checkOutBook(choice);
+            } else {
+                System.out.println("wrong selection. Try again!");
+            }
+            /*switch (choice) {
+                case "Harry Potter and the Philosopher's Stone":
                     System.out.println("You selected Option A");
                     break;
-                case 2:
+                case "The Cat in the Hat":
                     System.out.println("You selected Option B");
                     break;
-                case 3:
+                case "Horton Hears a Who!":
                     System.out.println("You selected Option C");
                     break;
-                case 4:
+                case "Dr. Seuss on the Loose":
                     System.out.println("You selected option 4");
                     break;
                 default:
                     System.out.println("wrong selection. Try again!");
-            }
+            }*/
 
             System.out.print("Select a Book to checkout (select -1 to exit app): ");
-            choice = scan.nextInt();
+            choice = scan.nextLine();
 
         }
 
