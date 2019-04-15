@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.StringReader;
 import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -115,5 +117,21 @@ public class LibraryBookCatalogueTest {
         // Then
         Assert.assertThat(output.toString(), is("Sorry that book is not available\n"));
     }
+
+    /*@Test
+    public void checkInBookTest() {
+        // Given
+        String bookTitle = "Harry Potter and the Philosopher's Stone";
+        LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
+        bookCatalogue.reduceBookQuantity(bookTitle); // reduce book quantity to zero so this book is no longer available
+        int initialBookQty = bookCatalogue.getBookQuantity(bookTitle);
+        // When
+        bookCatalogue.checkInBook(bookTitle); // Checkout book that is no longer available
+        int qtyAfterCheckIn = bookCatalogue.getBookQuantity(bookTitle);
+        // Then
+        assertThat(initialBookQty, is(0)); // Zero books in inventory after customer checkout
+        assertThat(qtyAfterCheckIn, is(1)); // After checkIn, book quantity should be back to 1
+
+    }*/
 
 }
