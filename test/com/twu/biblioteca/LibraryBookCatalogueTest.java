@@ -6,9 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
-import java.io.StringReader;
 import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -69,7 +67,7 @@ public class LibraryBookCatalogueTest {
 
         // When
         int initialBookQty = bookCatalogue.getBookQuantity(title);
-        bookCatalogue.reduceBookQuantity(title);
+        bookCatalogue.bookQuantityReduced(title);
         int currentBookQty = bookCatalogue.getBookQuantity(title);
 
         // Then
@@ -111,11 +109,11 @@ public class LibraryBookCatalogueTest {
         // Given
         String bookTitle = "Harry Potter and the Philosopher's Stone";
         LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
-        bookCatalogue.reduceBookQuantity(bookTitle); // reduce book quantity to zero so this book is no longer available
+        bookCatalogue.bookQuantityReduced(bookTitle); // reduce book quantity to zero so this book is no longer available
         // When
         bookCatalogue.checkOutBook(bookTitle); // Checkout book that is no longer available
         // Then
-        Assert.assertThat(output.toString(), is("Sorry that book is not available\n"));
+        Assert.assertThat(output.toString(), is("Sorry that book is not available\n\n"));
     }
 
     /*@Test
@@ -139,12 +137,36 @@ public class LibraryBookCatalogueTest {
         // Given
         String bookTitle = "Harry Potter and the Philosopher's Stone";
         LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
+        bookCatalogue.bookQuantityReduced(bookTitle); // Checkout the book first before returning it.
 
         // When
         bookCatalogue.checkIn(bookTitle);
 
         // Then
-        assertThat(output.toString(), is("Thank you for returning the book\n"));
+        assertThat(output.toString(), is("Thank you for returning the book\n\n"));
     }
 
+    @Test
+    public void checkInBookThatIsNotListedOnCatalogue(){
+        String bookTitleDoesNotExistInCatalogue = "Star Wars";
+        LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
+
+        // When
+        bookCatalogue.checkIn(bookTitleDoesNotExistInCatalogue);
+
+        // Then
+        assertThat(output.toString(), is("That is not a valid book to return.\n\n"));
+    }
+
+    @Test
+    public void checkInBookThatIsListedButNotBelongToLibrary(){
+        String bookTitle = "Horton Hears a Who!";
+        LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
+
+        // When
+        bookCatalogue.checkIn(bookTitle);
+
+        // Then
+        assertThat(output.toString(), is("That is not a valid book to return.\n\n"));
+    }
 }
