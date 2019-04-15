@@ -134,4 +134,17 @@ public class LibraryBookCatalogueTest {
 
     }*/
 
+    @Test
+    public void successfulCheckInTest(){
+        // Given
+        String bookTitle = "Harry Potter and the Philosopher's Stone";
+        LibraryBookCatalogue bookCatalogue = new LibraryBookCatalogue();
+
+        // When
+        bookCatalogue.checkIn(bookTitle);
+
+        // Then
+        assertThat(output.toString(), is("Thank you for returning the book\n"));
+    }
+
 }
