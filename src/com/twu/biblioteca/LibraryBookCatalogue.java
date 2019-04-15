@@ -20,7 +20,9 @@ public class LibraryBookCatalogue {
 
     private void displayListOfBooks(){
         for (Books book: listOfBooks.values()){
-            System.out.printf("%-50s %-20s %-10s\n", book.getTitle(), book.getAuthor(), book.getPublishDate());
+            if(book.quantity > 0) {
+                System.out.printf("%-50s %-20s %-10s\n", book.getTitle(), book.getAuthor(), book.getPublishDate());
+            }
         }
     }
 
@@ -33,6 +35,10 @@ public class LibraryBookCatalogue {
         }
 
         return null;
+    }
+
+    public void checkInBook(String bookTitle){
+
     }
 
     protected Boolean reduceBookQuantity(String bookTitle){
@@ -75,7 +81,7 @@ public class LibraryBookCatalogue {
             } else {
                 System.out.println("Sorry that book is not available");
             }
-
+            displayListOfBooks();
             System.out.print("Select a Book to checkout (select -1 to exit app): ");
             choice = scan.nextLine();
 
