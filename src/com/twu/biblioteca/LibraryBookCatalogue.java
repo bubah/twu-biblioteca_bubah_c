@@ -14,7 +14,7 @@ public class LibraryBookCatalogue {
         listOfBooks.put("Dr. Seuss on the Loose", new Books("Dr. Seuss on the Loose", "DR. Suess", 1973, 1));
     }
 
-    public HashMap getListOfBooks() {
+    protected HashMap getListOfBooks() {
         return listOfBooks;
     }
 
@@ -27,56 +27,51 @@ public class LibraryBookCatalogue {
         System.out.println();
     }
 
-    protected Books checkOutBook(String bookTitle){
-        if(listOfBooks.containsKey(bookTitle)){
-            if(reduceBookQuantity(bookTitle)) {
-                printSuccessMessage(bookTitle);
-                return listOfBooks.get(bookTitle);
-            }
-        }
-
-        return null;
-    }
-
     public void checkInBook(){
         Scanner scan = new Scanner(System.in);
         System.out.print("Insert book title: ");
         String bookTitle = scan.nextLine();
-        if(listOfBooks.containsKey(bookTitle)){
-            checkIn(bookTitle);
-        }
+        checkIn(bookTitle);
     }
 
-    public void checkIn(String bookTitle){
-        if(listOfBooks.containsKey(bookTitle)){
-            increaseBookQuantity(bookTitle);
+    protected void checkIn(String bookTitle){
+        if(listOfBooks.containsKey(bookTitle) && bookQuantityIncreased(bookTitle)){
+            System.out.println("Thank you for returning the book\n");
+            return;
         }
-        System.out.println("Thank you for returning the book\n");
+        System.out.println("That is not a valid book to return.\n");
     }
 
-    protected Boolean reduceBookQuantity(String bookTitle){
+    protected Books checkOutBook(String bookTitle){
+        if(listOfBooks.containsKey(bookTitle) && bookQuantityReduced(bookTitle)){
+            System.out.println(bookTitle + " has been checkedout!\n" );
+            return listOfBooks.get(bookTitle);
+        }
+        System.out.println("Sorry that book is not available\n");
+        return null;
+    }
+
+    protected Boolean bookQuantityReduced(String bookTitle){
         Books book = listOfBooks.get(bookTitle);
         if(book.quantity > 0) {
             book.quantity--;
             return true;
         }
-
-        System.out.println("Sorry that book is not available\n");
         return false;
     }
 
-    protected void increaseBookQuantity(String bookTitle){
+    protected Boolean bookQuantityIncreased(String bookTitle){
         Books book = listOfBooks.get(bookTitle);
+        if(book.quantity == 1) {
+            return false;
+        }
         book.quantity++;
+        return true;
     }
 
     public int getBookQuantity(String bookTitle){
         Books book = listOfBooks.get(bookTitle);
         return book.quantity;
-    }
-
-    private void printSuccessMessage(String bookTitle){
-        System.out.println(bookTitle + " has been checkedout!\n" );
     }
 
     public void selectBook() {
