@@ -24,6 +24,7 @@ public class LibraryBookCatalogue {
                 System.out.printf("%-50s %-20s %-10s\n", book.getTitle(), book.getAuthor(), book.getPublishDate());
             }
         }
+        System.out.println();
     }
 
     protected Books checkOutBook(String bookTitle){
@@ -39,7 +40,7 @@ public class LibraryBookCatalogue {
 
     public void checkInBook(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Insert book title: ");
+        System.out.print("Insert book title: ");
         String bookTitle = scan.nextLine();
         if(listOfBooks.containsKey(bookTitle)){
             checkIn(bookTitle);
@@ -50,6 +51,7 @@ public class LibraryBookCatalogue {
         if(listOfBooks.containsKey(bookTitle)){
             increaseBookQuantity(bookTitle);
         }
+        System.out.println("Thank you for returning the book\n");
     }
 
     protected Boolean reduceBookQuantity(String bookTitle){
@@ -59,7 +61,7 @@ public class LibraryBookCatalogue {
             return true;
         }
 
-        System.out.println("Sorry that book is not available");
+        System.out.println("Sorry that book is not available\n");
         return false;
     }
 
@@ -80,7 +82,7 @@ public class LibraryBookCatalogue {
     public void selectBook() {
         displayListOfBooks();
         Scanner scan = new Scanner(System.in);
-        System.out.print("Select a Book to checkout (1: exit app 2: checkIn Book): ");
+        System.out.print("Select a Book to checkout (1: exit book list): ");
         String choice = scan.nextLine();
 
         while (!choice.equals("1")) {
@@ -93,18 +95,15 @@ public class LibraryBookCatalogue {
                 checkOutBook(choice);
             } else if(choice.equals("Dr. Seuss on the Loose")) {
                 checkOutBook(choice);
-            } else if (choice.equals("2")){
-                checkInBook();
-            }
-            else {
+            } else {
                 System.out.println("Sorry that book is not available");
             }
             displayListOfBooks();
-            System.out.print("Select a Book to checkout (select -1 to exit app): ");
+            System.out.print("Select a Book to checkout (1: exit book list): ");
             choice = scan.nextLine();
 
         }
-
-        System.out.print("Successfuly exited the application");
+        System.out.println();
     }
+
 }
