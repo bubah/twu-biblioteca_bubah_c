@@ -13,12 +13,17 @@ public class LibraryMenue {
     LibraryMenue (){
         this.menueOptions = new ArrayList<String>();
         menueOptions.add("List of Books");
+        menueOptions.add("CheckIn Book");
+        menueOptions.add("Quit App");
     }
 
     // DIsplay Library menue options
     private void displayListOfMenueOptions(){
         System.out.println("Menue options:");
-        System.out.println("A: " + menueOptions.get(0) + "\n");
+        for(int optionNumber = 0; optionNumber< menueOptions.size(); optionNumber++) {
+            System.out.println(optionNumber + ": " + menueOptions.get(optionNumber));
+        }
+
         System.out.print("Select an Option: ");
     }
 
@@ -27,23 +32,30 @@ public class LibraryMenue {
         return menueOptions;
     }
 
-    private char getUserInput() {
+    private int getUserInput() {
         Scanner scan = new Scanner(System.in); // Set up Scanner
-        displayListOfMenueOptions(); // Display menue
-        char choice = scan.next().charAt(0); // Get user input
+        int choice = scan.nextInt(); // Get user input
         return choice;
     }
 
     public void browseMenue(){
-        char choice = getUserInput();
-        switch (choice){
-            case 'A':
-                System.out.println("You selected Option A \n");
-                LibraryBookCatalogue libraryBookCatalogue = new LibraryBookCatalogue();
-                libraryBookCatalogue.selectBook();
-                break;
-            default:
-                System.out.println("Wrong selection. Try again!");
+        displayListOfMenueOptions(); // Display menue
+        int choice = getUserInput();
+        LibraryBookCatalogue libraryBookCatalogue = new LibraryBookCatalogue();
+        while (!(choice == 2) ) {
+            switch (choice) {
+                case 0:
+                    libraryBookCatalogue.selectBook();
+                    break;
+                case 1:
+                    libraryBookCatalogue.checkInBook();
+                    break;
+
+                default:
+                    System.out.println("Wrong selection. Try again!");
             }
+            displayListOfMenueOptions();
+            choice = getUserInput();
+        }
     }
 }
